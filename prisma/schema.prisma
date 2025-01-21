@@ -1,0 +1,31 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite" // Alterado de "postgresql" para "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Video {
+  id          Int      @id @default(autoincrement())
+  title       String
+  category    String   // Mantém a categoria como string
+  image       String
+  videoUrl    String
+  description String
+  // Removido: tags        Tag[]   @relation("VideoTags")
+}
+
+// Removido o modelo Tag
+// model Tag {
+//   id     Int     @id @default(autoincrement())
+//   name   String  @unique
+//   videos Video[] @relation("VideoTags")
+// }
